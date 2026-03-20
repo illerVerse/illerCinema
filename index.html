@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NEVERDIEPOOL CINEMA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-color: #050505;
+      --card-bg: #111111;
+      --accent-red: #e50914;
+      --text-color: #ffffff;
+      --muted-text: #aaaaaa;
+      --poster-radius: 6px;
+      --poster-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      --poster-hover-shadow: 0 0 18px rgba(229, 9, 20, 0.9),
+                             0 0 26px rgba(0, 0, 0, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    /* Header */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      gap: 16px;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .site-title {
+      font-size: 1.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      font-weight: 800;
+    }
+
+    .site-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted-text);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    /* Discord button */
+
+    .discord-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(229, 9, 20, 0.7);
+      background: radial-gradient(circle at top left, #e50914 0, #111 55%, #000 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+        border-color 0.15s ease-out, background 0.15s ease-out;
+      white-space: nowrap;
+    }
+
+    .discord-link:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 18px rgba(229, 9, 20, 0.9);
+      border-color: #ffffff;
+      background: radial-gradient(circle at top left, #ff1b2a 0, #111 55%, #000 100%);
+    }
+
+    .discord-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .discord-icon::before,
+    .discord-icon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 40% 40% 60% 60%;
+      background: #000000;
+      border: 2px solid #ffffff;
+    }
+
+    .discord-icon::after {
+      inset: 4px 3px 2px;
+      border-radius: 40% 40% 60% 60%;
+      border-width: 0;
+      background: #ffffff;
+      mask-image: radial-gradient(circle at 30% 40%, transparent 0 18%, black 19% 100%),
+                  radial-gradient(circle at 70% 40%, transparent 0 18%, black 19% 100%),
+                  linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor;
+    }
+
+    /* Grid */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+    }
+
+    .poster-card {
+      position: relative;
+      background-color: var(--card-bg);
+      border-radius: var(--poster-radius);
+      overflow: hidden;
+      aspect-ratio: 2 / 3;
+      box-shadow: var(--poster-shadow);
+      transform: translateZ(0);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+        filter 0.15s ease-out;
+    }
+
+    .poster-card:hover {
+      box-shadow: var(--poster-hover-shadow);
+      transform: translateY(-3px) scale(1.03);
+      filter: saturate(1.1);
+      z-index: 2;
+    }
+
+    .poster-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Number badge */
+
+    .poster-number {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.85);
+      color: var(--accent-red);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(229, 9, 20, 0.8);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Optional footer */
+
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted-text);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="title-block">
+        <div class="site-title">NEVERDIEPOOL CINEMA</div>
+        <div class="site-subtitle">Red band poster catalog</div>
+      </div>
+
+      <!-- Replace YOUR_DISCORD_INVITE_URL with your real invite link -->
+      <a
+        class="discord-link"
+        href="https://discord.gg/YOUR_DISCORD_INVITE_URL"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="discord-icon" aria-hidden="true"></span>
+        <span>Join the Discord</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="grid">
+        <!--
+          HOW TO ADD POSTERS
+
+          1. Put your poster images in an /images folder in the repo.
+          2. For each poster, copy one of these .poster-card blocks.
+          3. Update:
+             - data-number (for your own reference)
+             - the visible number text
+             - src to point to your image file
+             - alt to describe the movie/show (for accessibility)
+        -->
+
+        <!-- Example posters (replace with your own) -->
+        <article class="poster-card" data-number="1">
+          <div class="poster-number">#01</div>
+          <img
+            class="poster-image"
+            src="images/poster-01.jpg"
+            alt="Movie 1"
+          />
+        </article>
+
+        <article class="poster-card" data-number="2">
+          <div class="poster-number">#02</div>
+          <img
+            class="poster-image"
+            src="images/poster-02.jpg"
+            alt="Movie 2"
+          />
+        </article>
+
+        <article class="poster-card" data-number="3">
+          <div class="poster-number">#03</div>
+          <img
+            class="poster-image"
+            src="images/poster-03.jpg"
+            alt="Movie 3"
+          />
+        </article>
+
+        <article class="poster-card" data-number="4">
+          <div class="poster-number">#04</div>
+          <img
+            class="poster-image"
+            src="images/poster-04.jpg"
+            alt="Movie 4"
+          />
+        </article>
+
+        <article class="poster-card" data-number="5">
+          <div class="poster-number">#05</div>
+          <img
+            class="poster-image"
+            src="images/poster-05.jpg"
+            alt="Movie 5"
+          />
+        </article>
+
+        <!-- Add as many as you want, just keep copying this pattern -->
+      </section>
+
+      <div class="footer">
+        Neverdiepool catalog • posters only, no spoilers
+      </div>
+    </main>
+  </div>
+</body>
+</html>
