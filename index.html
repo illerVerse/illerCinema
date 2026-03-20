@@ -93,6 +93,8 @@
       mask: url("https://simpleicons.org/icons/discord.svg") no-repeat center;
      -webkit-mask: url("https://simpleicons.org/icons/discord.svg") no-repeat center;
       background-color: white;
+      filter: drop-shadow(0 0 10px rgba(160, 32, 240, 0.6))
+        drop-shadow(0 0 6px rgba(0, 183, 255, 0.5));
     }
 
     .discord-icon {
@@ -123,7 +125,9 @@
 
     .poster-card:hover {
       transform: translateY(-4px) scale(1.04);
-      box-shadow: var(--poster-hover-shadow);
+      box-shadow:
+        0 0 22px rgba(160, 32, 240, 0.55),   /* purple */
+        0 0 14px rgba(0, 183, 255, 0.45);    /* blue */
       filter: saturate(1.15);
       z-index: 3;
     }
