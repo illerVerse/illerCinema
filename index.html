@@ -7,62 +7,75 @@
 
   <style>
     :root {
-      --bg-dark: #0a0a0a;
+      --bg-dark: #000000;
+      --bg-gradient: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
       --accent-red: #e50914;
-      --muted-text: #999;
-      --poster-hover-shadow: 0 0 18px rgba(229, 9, 20, 0.55);
+      --muted-text: #b3b3b3;
+
+      --poster-radius: 10px;
+      --poster-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+      --poster-hover-shadow:
+        0 0 22px rgba(229, 9, 20, 0.55),
+        0 0 12px rgba(229, 9, 20, 0.35);
     }
 
     body {
       margin: 0;
       padding: 0;
-      background: var(--bg-dark);
+      background: var(--bg-gradient);
       font-family: Arial, Helvetica, sans-serif;
       color: white;
     }
 
     .page {
-      max-width: 1400px;
+      max-width: 1500px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 30px;
     }
 
+    /* Header */
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 26px;
+      margin-bottom: 40px;
     }
 
-    .site-title {
-      font-size: 2.4rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-red);
-    }
-
-    .site-subtitle {
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted-text);
-      margin-top: 4px;
+    .title-block {
       text-align: center;
     }
 
+    .title-image {
+      width: 100%;
+      max-width: 460px;
+      display: block;
+      margin: 0 auto;
+      transform: rotate(3deg);
+      filter: drop-shadow(0 0 12px rgba(229, 9, 20, 0.4));
+    }
+
+    .site-subtitle {
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted-text);
+      margin-top: 6px;
+    }
+
+    /* Discord button */
     .discord-link {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 16px;
+      padding: 12px 18px;
       background: rgba(255, 255, 255, 0.08);
-      border-radius: 6px;
+      border-radius: 8px;
       color: white;
       text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
       transition: 0.2s ease-out;
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .discord-link:hover {
@@ -71,33 +84,34 @@
     }
 
     .discord-icon {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       background-image: url("images/discord-icon.png");
       background-size: cover;
       display: inline-block;
     }
 
+    /* Poster Grid */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 28px;
     }
 
     .poster-card {
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
+      border-radius: var(--poster-radius);
       background: #111;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-      transition: 0.15s ease-out;
+      box-shadow: var(--poster-shadow);
+      transition: 0.18s ease-out;
     }
 
     .poster-card:hover {
+      transform: translateY(-4px) scale(1.04);
       box-shadow: var(--poster-hover-shadow);
-      transform: translateY(-3px) scale(1.03);
-      filter: saturate(1.1);
-      z-index: 2;
+      filter: saturate(1.15);
+      z-index: 3;
     }
 
     .poster-image {
@@ -107,42 +121,32 @@
       display: block;
     }
 
+    /* Number badge */
     .poster-number {
       position: absolute;
-      top: 6px;
-      left: 6px;
-      padding: 2px 7px;
+      top: 8px;
+      left: 8px;
+      padding: 3px 9px;
       border-radius: 999px;
       background: rgba(0, 0, 0, 0.85);
       color: var(--accent-red);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       border: 1px solid rgba(229, 9, 20, 0.8);
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
     }
 
+    /* Footer */
     .footer {
-      margin-top: 26px;
+      margin-top: 40px;
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--muted-text);
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      opacity: 0.7;
-    }
-
-    .title-image {
-      width: 100%;
-      max-width: 420px;
-      display: block;
-      margin: 0 auto;
-      transform: rotate(4deg);
-    }
-
-    .title-block {
-      text-align: center;
+      opacity: 0.75;
     }
   </style>
 </head>
@@ -151,9 +155,7 @@
   <div class="page">
     <header class="header">
       <div class="title-block">
-        <div class="site-title">
-          <img src="images/illerVerse.png" alt="illerVerse Cinema" class="title-image">
-        </div>
+        <img src="images/illerVerse.png" alt="illerVerse Cinema" class="title-image">
         <div class="site-subtitle">Movie Catalog</div>
       </div>
 
