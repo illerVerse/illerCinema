@@ -256,10 +256,33 @@
     .poster-number { font-size: 0.72rem; padding: 3px 8px; }
   }
 
+    /* MOVING STAR BACKGROUND */
+   .stars {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 200%;
+     height: 200%;
+     background: transparent url('https://i.imgur.com/9aKxvQp.png') repeat;
+     animation: drift 60s linear infinite;
+     opacity: 0.35;
+     pointer-events: none;
+     z-index: -1;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-500px, -500px); }
+}
+
   </style>
 </head>
 
 <body>
+
+  <!-- MOVING SPACE BACKGROUND -->
+  <div class="stars"></div>
+
   <div class="page">
 
     <div class="title-block">
