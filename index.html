@@ -62,7 +62,7 @@
   .top-row {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto 40px;
+    margin: 0 auto 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -86,21 +86,21 @@
 
   #searchInput {
     width: 100%;
-    max-width: 380px;
+    max-width: 360px;
     padding: 10px 14px;
     border-radius: 8px;
-    border: 2px solid rgba(127, 92, 255, 0.4);
+    border: 1.5px solid rgba(127, 92, 255, 0.35);
     background: #0f0f17;
     color: white;
     font-size: 1rem;
-    box-shadow: 0 0 12px rgba(127, 92, 255, 0.25);
+    box-shadow: 0 0 8px rgba(127, 92, 255, 0.18);
     outline: none;
     transition: 0.25s ease;
   }
 
   #searchInput:focus {
     border-color: #a78bff;
-    box-shadow: 0 0 18px rgba(157, 122, 255, 0.55);
+    box-shadow: 0 0 14px rgba(157, 122, 255, 0.45);
   }
 
   /* ============================
@@ -141,8 +141,8 @@
      ============================ */
   .poster-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 26px;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    gap: 30px 26px;
     margin-top: 10px;
   }
 
@@ -153,6 +153,7 @@
     text-align: center;
     opacity: 0;
     animation: posterFade 0.6s ease forwards;
+    padding-bottom: 6px;
   }
 
   @keyframes posterFade { to { opacity: 1; } }
@@ -160,56 +161,60 @@
   .poster-image {
     width: 100%;
     border-radius: 10px;
-    box-shadow: 0 0 14px rgba(127, 92, 255, 0.25);
+    box-shadow:
+      0 4px 14px rgba(0, 0, 0, 0.55),
+      0 0 10px rgba(127, 92, 255, 0.25);
     display: block;
   }
 
   /* Poster number + title */
   .poster-meta {
-    margin-top: 10px;
+    margin-top: 8px;
     display: flex;
     justify-content: center;
-    gap: 6px;
-    font-size: 0.95rem;
-    font-weight: bold;
+    gap: 4px;
+    font-size: 0.92rem;
+    font-weight: 600;
   }
 
   .poster-number {
     color: var(--blue);
-    text-shadow: 0 0 6px var(--accent);
+    text-shadow: 0 0 4px rgba(0, 183, 255, 0.6);
   }
 
   .poster-title {
     color: white;
-    text-shadow: 0 0 6px rgba(127, 92, 255, 0.6);
+    text-shadow: 0 0 5px rgba(127, 92, 255, 0.5);
   }
 
   /* Year • Rating Box • Stars */
   .poster-details {
-    margin-top: 6px;
-    font-size: 0.8rem;
+    margin-top: 4px;
+    font-size: 0.78rem;
     color: var(--muted-text);
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
   }
 
   /* Rating box */
   .rating-box {
-    padding: 2px 8px;
-    border-radius: 6px;
-    background: rgba(20, 12, 40, 0.8);
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 6px rgba(127, 92, 255, 0.6);
-    font-size: 0.75rem;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: rgba(20, 12, 40, 0.75);
+    border: 1px solid rgba(127, 92, 255, 0.7);
+    box-shadow: 0 0 5px rgba(127, 92, 255, 0.45);
+    font-size: 0.72rem;
     color: white;
+    letter-spacing: 0.02em;
   }
 
   /* Cosmic glowing stars */
   .star-rating {
     color: var(--accent);
-    text-shadow: 0 0 6px var(--accent);
+    text-shadow: 0 0 5px rgba(127, 92, 255, 0.7);
+    font-size: 0.78rem;
   }
 
   /* ============================
@@ -220,10 +225,51 @@
     margin-top: 40px;
     color: var(--muted-text);
     font-size: 0.85rem;
-    opacity: 0.7;
-    text-shadow: 0 0 8px var(--accent);
+    opacity: 0.6;
+    text-shadow: 0 0 5px rgba(127, 92, 255, 0.4);
   }
 
+  /* ============================
+     MOBILE OPTIMIZATION
+     ============================ */
+  @media (max-width: 600px) {
+    .page { padding: 14px; }
+
+    .title-image {
+      width: 300px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .top-row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .site-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+    }
+
+    .search-container {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .discord-link {
+      padding: 7px 12px;
+      font-size: 0.85rem;
+    }
+
+    .poster-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+  }
   </style>
 </head>
 
