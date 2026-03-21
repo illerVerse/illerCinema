@@ -140,23 +140,20 @@
 
   @keyframes posterFade { to { opacity: 1; } }
 
-  /* NUMBER BADGE (copied EXACTLY from your snippet) */
+  /* NUMBER BADGE */
   .poster-number {
     position: absolute;
     top: 8px;
     left: 8px;
     padding: 4px 10px;
     border-radius: 999px;
-
     background: rgba(0, 0, 0, 0.75);
     color: var(--blue);
     border: 1px solid var(--accent);
-
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-
     filter: drop-shadow(0 0 6px var(--accent));
     backdrop-filter: blur(4px);
   }
@@ -178,12 +175,13 @@
     transform: translateY(-2px);
   }
 
-  /* TITLE + DETAILS ALIGNMENT */
+  /* TITLE + DETAILS ALIGNMENT (your exact style) */
   .poster-meta {
-    margin-top: 10px;
+    margin-top: 6px;
     font-size: 0.95rem;
     font-weight: 600;
     text-align: center;
+    line-height: 1.05;
   }
 
   .poster-title {
@@ -192,13 +190,14 @@
   }
 
   .poster-details {
-    margin-top: 6px;
+    margin-top: 2px;
     font-size: 0.78rem;
     color: var(--muted-text);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    line-height: 1;
   }
 
   .rating-box {
@@ -227,9 +226,7 @@
     text-shadow: 0 0 5px rgba(127, 92, 255, 0.4);
   }
 
-  /* ============================
-     MOBILE CENTERING FIX
-     ============================ */
+  /* MOBILE CENTERING FIX */
   @media (max-width: 600px) {
 
     .page {
