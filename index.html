@@ -60,15 +60,16 @@
   }
 
   /* ============================
-     CATALOG HEADER
+     TOP ROW (Catalog + Search + Discord)
      ============================ */
-  .catalog-header {
+  .top-row {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 10px;
+    margin: 0 auto 20px;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
   }
 
   .site-subtitle {
@@ -76,57 +77,13 @@
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted-text);
-    margin-bottom: 10px;
-    text-align: left;
     opacity: 0.85;
+    margin: 0;
   }
 
-  /* ============================
-     DISCORD BUTTON
-     ============================ */
-  .header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-  }
-
-  .discord-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background: #5865f2;
-    border-radius: 6px;
-    color: white;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold;
-    box-shadow: 0 0 12px rgba(88, 101, 242, 0.6);
-    transition: 0.25s ease;
-  }
-
-  .discord-link:hover {
-    box-shadow: 0 0 22px rgba(88, 101, 242, 0.9);
-    transform: translateY(-2px);
-  }
-
-  .discord-icon {
-    width: 22px;
-    height: 22px;
-    display: inline-block;
-    background-color: white;
-    mask: url("https://simpleicons.org/icons/discord.svg") no-repeat center;
-    -webkit-mask: url("https://simpleicons.org/icons/discord.svg") no-repeat center;
-    background-size: cover;
-  }
-
-  /* ============================
-     SEARCH BAR
-     ============================ */
+  /* Center search bar */
   .search-container {
-    width: 100%;
-    margin: 0 auto 20px;
+    flex: 1;
     display: flex;
     justify-content: center;
   }
@@ -148,6 +105,40 @@
   #searchInput:focus {
     border-color: #a78bff;
     box-shadow: 0 0 18px rgba(157, 122, 255, 0.55);
+  }
+
+  /* ============================
+     DISCORD BUTTON
+     ============================ */
+  .discord-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #5865f2;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(88, 101, 242, 0.6);
+    transition: 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .discord-link:hover {
+    box-shadow: 0 0 22px rgba(88, 101, 242, 0.9);
+    transform: translateY(-2px);
+  }
+
+  .discord-icon {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background-color: white;
+    mask: url("https://simpleicons.org/icons/discord.svg") no-repeat center;
+    -webkit-mask: url("https://simpleicons.org/icons/discord.svg") no-repeat center;
+    background-size: cover;
   }
 
   /* ============================
@@ -202,7 +193,7 @@
   }
 
   /* ============================
-     TMDB-STYLE HOVER INFO (GLOBAL)
+     TMDB-STYLE HOVER INFO
      ============================ */
   .poster-info {
     position: absolute;
@@ -238,32 +229,18 @@
      MOBILE OPTIMIZATION
      ============================ */
   @media (max-width: 600px) {
-    .page {
-      padding: 14px;
+    .top-row {
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .title-image {
-      width: 200px;
+    .discord-link {
+      align-self: center;
     }
 
     .poster-grid {
       grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 16px;
-    }
-
-    .poster-number {
-      font-size: 0.7rem;
-      padding: 3px 6px;
-    }
-
-    .site-subtitle {
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-    }
-
-    .discord-link {
-      padding: 7px 12px;
-      font-size: 0.85rem;
     }
   }
 
@@ -305,25 +282,23 @@
       <img src="images/illerVerse.png" alt="illerVerse Cinema" class="title-image">
     </div>
 
-    <div class="catalog-header">
+    <!-- ⭐ NEW 3‑WAY ALIGNED TOP ROW ⭐ -->
+    <div class="top-row">
       <h2 class="site-subtitle">Catalog</h2>
-    </div>
 
-    <header class="header">
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search catalog..."
+          autocomplete="off"
+        />
+      </div>
+
       <a class="discord-link" href="https://discord.gg/vpq26ScgUd" target="_blank" rel="noopener noreferrer">
         <span class="discord-icon"></span>
         <span>Discord</span>
       </a>
-    </header>
-
-    <!-- ⭐ SEARCH BAR ADDED HERE ⭐ -->
-    <div class="search-container">
-      <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="Search catalog..."
-        autocomplete="off"
-      />
     </div>
 
     <main>
