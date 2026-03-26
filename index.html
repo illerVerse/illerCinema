@@ -259,45 +259,43 @@
 
   /* ============================
        SEARCH BAR
-  ============================= */
-  .search-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-
-  #searchInput {
-    width: 100%;
-    max-width: 360px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1.5px solid rgba(127, 92, 255, 0.35);
-    background: #000f17;
-    color: white;
-    font-size: 1rem;
-    box-shadow: 0 0 8px rgba(127, 92, 255, 0.18);
-    outline: none;
-    transition: 0.25s ease;
-  }
-
-  #searchInput:focus {
-    border-color: #a78bff;
-    box-shadow: 0 0 14px rgba(157, 122, 255, 0.45);
-  }
-
-/* ============================
-      SEARCH INPUT GLOW LINE
 ============================= */
-#searchInput {
-  position: relative; /* required */
+.search-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative; /* required for glow positioning */
 }
 
+#searchInput {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(127, 92, 255, 0.35);
+  background: #000f17;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 0 8px rgba(127, 92, 255, 0.18);
+  outline: none;
+  transition: 0.25s ease;
+  position: relative; /* required for glow bar */
+}
+
+#searchInput:focus {
+  border-color: #a78bff;
+  box-shadow: 0 0 14px rgba(157, 122, 255, 0.45);
+}
+
+/* ============================
+      SEARCH BAR GLOW LINE
+============================= */
 #searchInput::after {
   content: "";
   position: absolute;
   bottom: -16px; /* distance BELOW the search bar */
   left: 0;
-  width: 100%; /* matches the input width exactly */
+  width: 100%; /* EXACT width of the input */
   height: 3px;
   background: var(--accent);
   box-shadow:
