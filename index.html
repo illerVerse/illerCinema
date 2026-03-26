@@ -40,7 +40,7 @@
     max-width: 1200px;
     padding: 20px;
     position: relative;
-    z-index: 2;
+    z-index: 3;
   }
 
   /* ============================
@@ -51,8 +51,9 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(circle at 30% 20%, rgba(127,92,255,0.12), transparent 60%),
-                radial-gradient(circle at 70% 80%, rgba(0,183,255,0.10), transparent 60%);
+    background:
+      radial-gradient(circle at 30% 20%, rgba(127,92,255,0.12), transparent 60%),
+      radial-gradient(circle at 70% 80%, rgba(0,183,255,0.10), transparent 60%);
     animation: drift 18s ease-in-out infinite alternate;
   }
 
@@ -73,26 +74,111 @@
   }
 
   /* ============================
-       TITLE + HEADER
+       LOGO AREA EFFECTS
   ============================= */
-  .title-block {
-    text-align: center;
-    margin-bottom: 20px;
+
+  /* Halo Arc Behind Logo */
+  .logo-halo {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,
+      rgba(127,92,255,0.25),
+      rgba(0,0,0,0)
+    );
+    filter: blur(40px);
+    z-index: -1;
+    animation: haloPulse 10s ease-in-out infinite;
   }
 
+  @keyframes haloPulse {
+    0%, 100% { opacity: 0.45; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.75; transform: translateX(-50%) scale(1.08); }
+  }
+
+  /* Floating Particles */
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(127,92,255,0.55);
+    border-radius: 50%;
+    filter: blur(2px);
+    animation: floatParticle 12s linear infinite;
+  }
+
+  @keyframes floatParticle {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-120px) scale(0.4); opacity: 0; }
+  }
+
+  /* Light Streak Behind Logo */
+  .light-streak {
+    position: absolute;
+    top: 50%;
+    left: -200px;
+    width: 600px;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(127,92,255,0.6),
+      rgba(0,183,255,0.6),
+      transparent
+    );
+    filter: blur(4px);
+    animation: streakMove 12s ease-in-out infinite;
+  }
+
+  @keyframes streakMove {
+    0% { transform: translateX(-200px); opacity: 0; }
+    20% { opacity: 1; }
+    50% { transform: translateX(200px); opacity: 1; }
+    80% { opacity: 0; }
+    100% { transform: translateX(400px); opacity: 0; }
+  }
+
+  /* Logo Floating Animation */
   .title-image {
     width: 420px;
     transform: rotate(-3deg);
     filter: drop-shadow(0 0 12px var(--accent));
     opacity: 0;
-    animation: logoFade 0.8s ease forwards, logoPulse 8s ease-in-out infinite;
+    animation:
+      logoFade 0.8s ease forwards,
+      logoFloat 6s ease-in-out infinite,
+      logoPulse 8s ease-in-out infinite;
   }
 
   @keyframes logoFade { to { opacity: 1; } }
 
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-6px) rotate(-3deg); }
+  }
+
   @keyframes logoPulse {
     0%, 100% { filter: drop-shadow(0 0 12px var(--accent)); }
     50% { filter: drop-shadow(0 0 22px var(--accent)); }
+  }
+
+  /* ============================
+       TITLE + HEADER
+  ============================= */
+  .title-block {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
   }
 
   .top-row {
@@ -385,64 +471,30 @@
 
   <div class="page">
 
+    <!-- LOGO AREA -->
     <div class="title-block">
+
+      <!-- Halo -->
+      <div class="logo-halo"></div>
+
+      <!-- Light Streak -->
+      <div class="light-streak"></div>
+
+      <!-- Particles -->
+      <div class="particles">
+        <div class="particle" style="top: 40px; left: 48%; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 80px; left: 52%; animation-delay: 2s;"></div>
+        <div class="particle" style="top: 120px; left: 46%; animation-delay: 4s;"></div>
+        <div class="particle" style="top: 160px; left: 50%; animation-delay: 6s;"></div>
+      </div>
+
+      <!-- Logo -->
       <img src="images/illerVerse.png" class="title-image" alt="illerVerse Logo">
+
     </div>
 
+    <!-- TOP ROW -->
     <div class="top-row">
       <h2 class="site-subtitle">Catalog</h2>
 
-      <div class="search-container">
-        <input id="searchInput" placeholder="Search catalog..." autocomplete="off" />
-      </div>
-
-      <a class="discord-link" href="https://discord.gg/vpq26ScgUd" target="_blank">
-        <span class="discord-icon"></span>
-        <span>Discord</span>
-      </a>
-    </div>
-
-    <main>
-      <section class="poster-grid">
-
-        <article class="poster-card" data-number="1">
-          <div class="poster-number">#1</div>
-          <img class="poster-image" src="images/poster-01.jpg" alt="Black Bird" />
-          <div class="poster-info">
-            <h3 class="info-title">Black Bird</h3>
-            <div class="info-details">
-              <span class="year">2022</span>
-              <span class="rating-box">R</span>
-              <span class="stars">★★★★★</span>
-            </div>
-          </div>
-        </article>
-
-      </section>
-
-      <div class="footer">
-        illerVerse • illerFlix • Neverdiepool
-      </div>
-    </main>
-
-  </div>
-
-  <script>
-    document.getElementById("searchInput").addEventListener("input", function () {
-      const query = this.value.toLowerCase();
-      const cards = document.querySelectorAll(".poster-card");
-
-      cards.forEach(card => {
-        const title = card.querySelector(".info-title")?.textContent.toLowerCase() || "";
-        const year = card.querySelector(".year")?.textContent.toLowerCase() || "";
-        const number = card.dataset.number || "";
-
-        const combined = `${title} ${year} ${number}`.toLowerCase();
-
-        card.style.display = combined.includes(query) ? "block" : "none";
-      });
-    });
-  </script>
-
-</body>
-</html>
+      <div
