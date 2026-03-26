@@ -74,7 +74,6 @@
     justify-content: center;
   }
 
-  /* FIXED SELECTOR */
   #searchInput {
     width: 100%;
     max-width: 360px;
@@ -124,14 +123,12 @@
     background-size: cover;
   }
 
-  /* POSTER GRID */
   .poster-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
     gap: 30px 26px;
   }
 
-  /* POSTER CARD */
   .poster-card {
     position: relative;
     border-radius: 10px;
@@ -175,7 +172,6 @@
     transform: translateY(-2px);
   }
 
-  /* HOVER OVERLAY */
   .poster-info {
     position: absolute;
     bottom: 0;
@@ -183,14 +179,12 @@
     width: 100%;
     padding: 16px 12px 20px;
     padding-left: 14px;
-
     background: linear-gradient(
       to top,
       rgba(0,0,0,0.85) 0%,
       rgba(0,0,0,0.55) 40%,
       rgba(0,0,0,0.0) 100%
     );
-
     opacity: 0;
     transform: translateY(25px);
     transition: opacity 0.35s ease, transform 0.35s ease;
@@ -223,7 +217,7 @@
     color: var(--muted-text);
   }
 
-  .info-details .rating-box {
+  .rating-box {
     padding: 2px 7px;
     border-radius: 5px;
     background: rgba(20, 12, 40, 0.75);
@@ -233,7 +227,7 @@
     color: white;
   }
 
-  .info-details .stars {
+  .stars {
     color: var(--accent);
     text-shadow: 0 0 5px rgba(127, 92, 255, 0.7);
   }
@@ -257,7 +251,6 @@
     .poster-number { font-size: 0.72rem; padding: 3px 8px; }
   }
 
-  /* FUTURISTIC NEON CORNER BORDERS */
   .corner-frame {
     position: fixed;
     inset: 0;
@@ -275,7 +268,6 @@
     filter: drop-shadow(0 0 8px var(--accent));
   }
 
-  /* Top-left corner */
   .corner-frame::before {
     top: 20px;
     left: 20px;
@@ -284,7 +276,6 @@
     border-radius: 8px 0 0 0;
   }
 
-  /* Bottom-right corner */
   .corner-frame::after {
     bottom: 20px;
     right: 20px;
@@ -292,19 +283,17 @@
     border-top: none;
     border-radius: 0 0 8px 0;
   }
-
   </style>
 </head>
 
 <body>
 
-  <!-- NEW FUTURISTIC CORNER BORDERS -->
   <div class="corner-frame"></div>
 
   <div class="page">
 
     <div class="title-block">
-      <img src="images/illerVerse.png" class="title-image">
+      <img src="images/illerVerse.png" class="title-image" alt="illerVerse Logo">
     </div>
 
     <div class="top-row">
@@ -322,8 +311,6 @@
 
     <main>
       <section class="poster-grid">
-
-        <!-- POSTERS (unchanged for now) -->
 
         <article class="poster-card" data-number="1">
           <div class="poster-number">#1</div>
