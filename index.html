@@ -505,30 +505,6 @@
   }
 
   /* ============================
-       CORNER FRAMES (ALL 4)
-  ============================= */
-  .corner-frame {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 5;
-  }
-
-  .corner {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    border: 2px solid var(--accent);
-    filter: drop-shadow(0 0 8px var(--accent));
-    border-radius: 8px;
-  }
-
-  .tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-  .tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
-  .bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
-  .br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
-
-  /* ============================
        MOBILE RESPONSIVE
   ============================= */
   @media (max-width: 600px) {
