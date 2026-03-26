@@ -542,15 +542,19 @@
   }
 
   /* ============================
-      MOBILE FIXES (CENTER EVERYTHING)
-  ============================= */
+      MOBILE TRUE CENTERING
+============================= */
 @media (max-width: 600px) {
 
-  /* Stack top row cleanly */
+  /* Force the entire top section to center inside the neon borders */
   .top-row {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;              /* centers relative to viewport */
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 14px;
+    align-items: center;          /* TRUE centering */
+    justify-content: center;
     text-align: center;
   }
 
@@ -560,7 +564,7 @@
     transform: scale(0.85);
   }
 
-  /* Search container centered as a block */
+  /* Search container centered */
   .search-container {
     width: 100%;
     display: flex;
@@ -568,15 +572,15 @@
     position: relative;
   }
 
-  /* Search input centered and sized for mobile */
+  /* Search input width */
   #searchInput {
     max-width: 300px;
     width: 100%;
   }
 
-  /* Glow bar EXACTLY centered under the input */
+  /* Glow bar centered relative to the neon borders */
   .search-container::after {
-    width: 300px;        /* match mobile input width */
+    width: 300px;
     max-width: 100%;
     left: 50%;
     transform: translateX(-50%);
@@ -599,6 +603,7 @@
   .poster {
     margin: 0 auto;
   }
+  
   </style>
 </head>
 
