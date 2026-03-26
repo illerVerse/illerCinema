@@ -541,12 +541,12 @@
     .poster-number { font-size: 0.72rem; padding: 3px 8px; }
   }
 
-    /* ============================
-      MOBILE FIXES
-============================= */
+  /* ============================
+      MOBILE FIXES (CENTER EVERYTHING)
+  ============================= */
 @media (max-width: 600px) {
 
-  /* Center everything in the top block */
+  /* Stack top row cleanly */
   .top-row {
     flex-direction: column;
     align-items: center;
@@ -554,30 +554,36 @@
     text-align: center;
   }
 
-  /* Logo block spacing */
+  /* Logo block */
   .title-block {
-    margin-bottom: 10px;
-    transform: scale(0.85); /* shrink slightly for mobile */
+    margin-bottom: 6px;
+    transform: scale(0.85);
   }
 
-  /* Search bar container */
+  /* Search container centered as a block */
   .search-container {
     width: 100%;
+    display: flex;
     justify-content: center;
+    position: relative;
   }
 
-  /* Search bar width */
+  /* Search input centered and sized for mobile */
   #searchInput {
     max-width: 300px;
+    width: 100%;
   }
 
-  /* Glow bar under search bar */
+  /* Glow bar EXACTLY centered under the input */
   .search-container::after {
-    width: 300px;      /* match mobile input width */
-    bottom: -12px;     /* pull glow closer */
+    width: 300px;        /* match mobile input width */
+    max-width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -12px;
   }
 
-  /* Discord button */
+  /* Discord button centered */
   .discord-button {
     width: 200px;
     text-align: center;
@@ -593,7 +599,6 @@
   .poster {
     margin: 0 auto;
   }
-}
   </style>
 </head>
 
