@@ -12,8 +12,14 @@
     --muted-text: #b3b3b3;
     --accent: #7f5cff;
     --blue: #00b7ff;
+
+    --glow-1: rgba(127, 92, 255, 0.45);
+    --glow-2: rgba(0, 183, 255, 0.35);
   }
 
+  /* ============================
+       GLOBAL LAYOUT
+  ============================= */
   body {
     margin: 0;
     padding: 0;
@@ -24,6 +30,7 @@
     justify-content: center;
     opacity: 0;
     animation: pageFade 0.8s ease forwards;
+    overflow-x: hidden;
   }
 
   @keyframes pageFade { to { opacity: 1; } }
@@ -32,8 +39,42 @@
     width: 100%;
     max-width: 1200px;
     padding: 20px;
+    position: relative;
+    z-index: 2;
   }
 
+  /* ============================
+       COSMIC BACKGROUND FLARE
+  ============================= */
+  .cosmic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 30% 20%, rgba(127,92,255,0.12), transparent 60%),
+                radial-gradient(circle at 70% 80%, rgba(0,183,255,0.10), transparent 60%);
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0px, 0px) scale(1); }
+    100% { transform: translate(20px, -20px) scale(1.05); }
+  }
+
+  /* ============================
+       VIGNETTE
+  ============================= */
+  .vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.55));
+  }
+
+  /* ============================
+       TITLE + HEADER
+  ============================= */
   .title-block {
     text-align: center;
     margin-bottom: 20px;
@@ -44,10 +85,15 @@
     transform: rotate(-3deg);
     filter: drop-shadow(0 0 12px var(--accent));
     opacity: 0;
-    animation: logoFade 0.8s ease forwards;
+    animation: logoFade 0.8s ease forwards, logoPulse 8s ease-in-out infinite;
   }
 
   @keyframes logoFade { to { opacity: 1; } }
+
+  @keyframes logoPulse {
+    0%, 100% { filter: drop-shadow(0 0 12px var(--accent)); }
+    50% { filter: drop-shadow(0 0 22px var(--accent)); }
+  }
 
   .top-row {
     width: 100%;
@@ -66,8 +112,23 @@
     color: var(--muted-text);
     opacity: 0.9;
     margin: 0;
+    position: relative;
   }
 
+  .site-subtitle::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 6px;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ============================
+       SEARCH BAR
+  ============================= */
   .search-container {
     flex: 1;
     display: flex;
@@ -93,6 +154,9 @@
     box-shadow: 0 0 14px rgba(157, 122, 255, 0.45);
   }
 
+  /* ============================
+       DISCORD BUTTON
+  ============================= */
   .discord-link {
     display: flex;
     align-items: center;
@@ -123,21 +187,40 @@
     background-size: cover;
   }
 
+  /* ============================
+       POSTER GRID + PANEL GLOW
+  ============================= */
   .poster-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
     gap: 30px 26px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.02);
+    box-shadow:
+      0 0 25px rgba(127,92,255,0.15),
+      0 0 45px rgba(0,183,255,0.12);
+    backdrop-filter: blur(6px);
   }
 
+  /* ============================
+       POSTER CARD
+  ============================= */
   .poster-card {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
     opacity: 0;
     animation: posterFade 0.6s ease forwards;
+    transform: translateY(4px);
+    transition: transform 0.25s ease;
   }
 
   @keyframes posterFade { to { opacity: 1; } }
+
+  .poster-card:hover {
+    transform: translateY(-4px);
+  }
 
   .poster-number {
     position: absolute;
@@ -167,11 +250,14 @@
 
   .poster-card:hover .poster-image {
     box-shadow:
-      0 0 18px rgba(127, 92, 255, 0.55),
-      0 0 28px rgba(0, 183, 255, 0.45);
+      0 0 18px var(--glow-1),
+      0 0 28px var(--glow-2);
     transform: translateY(-2px);
   }
 
+  /* ============================
+       HOVER OVERLAY
+  ============================= */
   .poster-info {
     position: absolute;
     bottom: 0;
@@ -232,6 +318,9 @@
     text-shadow: 0 0 5px rgba(127, 92, 255, 0.7);
   }
 
+  /* ============================
+       FOOTER
+  ============================= */
   .footer {
     text-align: center;
     margin-top: 40px;
@@ -241,6 +330,33 @@
     text-shadow: 0 0 5px rgba(127, 92, 255, 0.4);
   }
 
+  /* ============================
+       CORNER FRAMES (ALL 4)
+  ============================= */
+  .corner-frame {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .corner {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--accent);
+    filter: drop-shadow(0 0 8px var(--accent));
+    border-radius: 8px;
+  }
+
+  .tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+  .tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+  .bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+  .br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+  /* ============================
+       MOBILE RESPONSIVE
+  ============================= */
   @media (max-width: 600px) {
     .page { padding: 14px; }
     .title-image { width: 300px; margin: 0 auto; display: block; }
@@ -250,45 +366,22 @@
     .poster-card { margin: 0 auto; }
     .poster-number { font-size: 0.72rem; padding: 3px 8px; }
   }
-
-  .corner-frame {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 5;
-  }
-
-  .corner-frame::before,
-  .corner-frame::after {
-    content: "";
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    border: 2px solid var(--accent);
-    filter: drop-shadow(0 0 8px var(--accent));
-  }
-
-  .corner-frame::before {
-    top: 20px;
-    left: 20px;
-    border-right: none;
-    border-bottom: none;
-    border-radius: 8px 0 0 0;
-  }
-
-  .corner-frame::after {
-    bottom: 20px;
-    right: 20px;
-    border-left: none;
-    border-top: none;
-    border-radius: 0 0 8px 0;
-  }
   </style>
 </head>
 
 <body>
 
-  <div class="corner-frame"></div>
+  <!-- COSMIC BACKGROUND -->
+  <div class="cosmic-bg"></div>
+  <div class="vignette"></div>
+
+  <!-- CORNER FRAMES -->
+  <div class="corner-frame">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+  </div>
 
   <div class="page">
 
