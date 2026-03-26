@@ -470,6 +470,91 @@ body {
     padding: 0 12px !important;
   }
 
+    /* FINAL MOBILE CENTERING TWEAKS - paste at end of CSS */
+
+/* Ensure the viewport behaves and body centers content */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Strong mobile override */
+@media (max-width: 700px) {
+  body {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  /* Make the page container exactly the viewport width and centered */
+  .page {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+
+  /* Center the top row items and prevent left stacking */
+  .top-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 0 auto 28px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .search-container {
+    width: 100% !important;
+    max-width: 420px !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  #searchInput {
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Make poster grid centered and easier to read on phones */
+  .poster-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding: 10px 0 !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .poster-card {
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 420px !important;
+  }
+
+  .title-image {
+    margin: 0 auto !important;
+    display: block !important;
+    width: 260px !important;
+    max-width: 70% !important;
+  }
+}
+
+/* Optional debug outline to confirm centering visually (remove after testing) */
+@media (max-width: 700px) {
+  /* .page { outline: 2px dashed rgba(255,255,255,0.12); } */
+}
+
   </style>
 </head>
 <body>
