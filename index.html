@@ -449,35 +449,17 @@ body {
   .poster-card { margin: 0 auto; }
   .poster-number { font-size: 0.72rem; padding: 3px 8px; }
 }
-    /* MOBILE: make layout feel closer and bigger */
+/* TRUE MOBILE CENTERING FIX */
 @media (max-width: 600px) {
-  body {
-    justify-content: flex-start;
-  }
-
   .page {
-    max-width: none;
-    padding: 10px;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 12px !important;
   }
 
-  .title-block {
-    margin-bottom: 10px;
-  }
-
-  .title-image {
-    width: 260px;
-  }
-
-  .poster-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    max-width: 100%;
-    padding: 10px 0;
-  }
-
-  .poster-card {
-    max-width: 360px;
-    margin: 0 auto;
+  body {
+    display: block !important;
   }
 }
 
