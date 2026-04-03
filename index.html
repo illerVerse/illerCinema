@@ -426,27 +426,62 @@ body {
 }
 
 /* ============================
-     FOOTER
-============================= */
+   FOOTER
+============================ */
 .footer {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 50px;
+  padding-bottom: 20px;
+
   color: var(--muted-text);
   font-size: 0.85rem;
-  opacity: 0.6;
+  opacity: 0.7;
   text-shadow: 0 0 5px rgba(127, 92, 255, 0.4);
 }
-.footer a {
-  color: inherit;
+
+/* container */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* buttons */
+.footer-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
   text-decoration: none;
-  transition: 0.2s;
+  font-size: 0.8rem;
+  color: #ccc;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(127,92,255,0.2);
+
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+
+  box-shadow:
+    0 0 6px rgba(127,92,255,0.2),
+    inset 0 0 6px rgba(127,92,255,0.1);
 }
 
-.footer a:hover {
-  color: #7f5cff;
-  text-shadow: 0 0 6px rgba(127,92,255,0.6);
+/* hover */
+.footer-btn:hover {
+  color: white;
+  border-color: #7f5cff;
+
+  box-shadow:
+    0 0 12px rgba(127,92,255,0.6),
+    0 0 24px rgba(0,183,255,0.4);
+
+  transform: translateY(-2px) scale(1.05);
 }
 
+/* click */
+.footer-btn:active {
+  transform: scale(0.95);
+}
+    
 /* ============================
      MOBILE RESPONSIVE (FIXED)
 ============================= */
@@ -2444,9 +2479,11 @@ body {
     </main>
 
     <footer class="footer">
-  <a href="https://kick.com/illerverse" target="_blank">illerVerse</a> • 
-  <a href="https://kick.com/illerflix" target="_blank">illerFlix</a> • 
-  <a href="https://kick.com/neverdiepool" target="_blank">Neverdiepool</a>
+  <div class="footer-links">
+    <a href="https://kick.com/illerverse" target="_blank" class="footer-btn">illerVerse</a>
+    <a href="https://kick.com/illerflix" target="_blank" class="footer-btn">illerFlix</a>
+    <a href="https://kick.com/neverdiepool" target="_blank" class="footer-btn">Neverdiepool</a>
+  </div>
     </footer>
 
   </div>
