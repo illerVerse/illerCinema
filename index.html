@@ -2441,52 +2441,58 @@ body {
 
   <!-- SCRIPTS -->
   <script>
-    const cards = document.querySelectorAll(".poster-card");
-    const searchInput = document.getElementById("searchInput");
+  const cards = document.querySelectorAll(".poster-card");
+  const searchInput = document.getElementById("searchInput");
 
-    // ============================
-    // SEARCH FUNCTION
-    // ============================
-    if (searchInput) {
-      searchInput.addEventListener("input", function () {
-        const query = this.value.toLowerCase();
+  // ============================
+  // SEARCH FUNCTION (FIXED)
+  // ============================
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      const query = this.value.trim().toLowerCase();
+      let visibleCount = 0;
 
-        cards.forEach(card => {
-          const title = card.querySelector(".info-title")?.textContent.toLowerCase() || "";
-          const year = card.querySelector(".year")?.textContent.toLowerCase() || "";
-          const number = card.dataset.number || "";
+      cards.forEach(card => {
+        const title = card.querySelector(".info-title")?.textContent.toLowerCase() || "";
+        const year = card.querySelector(".year")?.textContent.toLowerCase() || "";
+        const number = card.dataset.number || "";
 
-          const combined = `${title} ${year} ${number}`.toLowerCase();
+        const combined = `${title} ${year} ${number}`;
 
-          card.style.display = combined.includes(query) ? "block" : "none";
-        });
-      });
-    }
-
-    // ============================
-    // SCROLL REVEAL (AUTO SHOW INFO)
-    // ============================
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio >= 0.9) {
-          entry.target.classList.add("show-info");
-        } else if (entry.intersectionRatio <= 0.2) {
-          entry.target.classList.remove("show-info");
+        if (combined.includes(query)) {
+          card.style.display = ""; // ✅ keeps grid layout
+          visibleCount++;
+        } else {
+          card.style.display = "none";
         }
       });
-    }, { threshold: [0, 0.2, 0.9, 1] });
-
-    cards.forEach(card => observer.observe(card));
-
-    // ============================
-    // MOBILE TAP TO TOGGLE INFO
-    // ============================
-    cards.forEach(card => {
-      card.addEventListener("click", () => {
-        card.classList.toggle("show-info");
-      });
     });
-  </script>
+  }
+
+  // ============================
+  // SCROLL REVEAL (AUTO SHOW INFO)
+  // ============================
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio >= 0.9) {
+        entry.target.classList.add("show-info");
+      } else if (entry.intersectionRatio <= 0.2) {
+        entry.target.classList.remove("show-info");
+      }
+    });
+  }, { threshold: [0, 0.2, 0.9, 1] });
+
+  cards.forEach(card => observer.observe(card));
+
+  // ============================
+  // MOBILE TAP TO TOGGLE INFO
+  // ============================
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("show-info");
+    });
+  });
+</script>
 
 </body>
 </html>
