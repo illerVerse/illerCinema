@@ -2431,44 +2431,62 @@ body {
 </article>
 
 </section>
+    </main>
 
-<div class="footer">
-  illerVerse • illerFlix • Neverdiepool
-</div>
-</main>
-</div>
+    <footer class="footer">
+      illerVerse • illerFlix • Neverdiepool
+    </footer>
 
-<!-- MERGED + CLEANED SCRIPTS -->
-<script>
-  const cards = document.querySelectorAll(".poster-card");
+  </div>
 
-  // SEARCH FUNCTION
-  document.getElementById("searchInput").addEventListener("input", function () {
-    const query = this.value.toLowerCase();
+  <!-- SCRIPTS -->
+  <script>
+    const cards = document.querySelectorAll(".poster-card");
+    const searchInput = document.getElementById("searchInput");
 
+    // ============================
+    // SEARCH FUNCTION
+    // ============================
+    if (searchInput) {
+      searchInput.addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+
+        cards.forEach(card => {
+          const title = card.querySelector(".info-title")?.textContent.toLowerCase() || "";
+          const year = card.querySelector(".year")?.textContent.toLowerCase() || "";
+          const number = card.dataset.number || "";
+
+          const combined = `${title} ${year} ${number}`.toLowerCase();
+
+          card.style.display = combined.includes(query) ? "block" : "none";
+        });
+      });
+    }
+
+    // ============================
+    // SCROLL REVEAL (AUTO SHOW INFO)
+    // ============================
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio >= 0.9) {
+          entry.target.classList.add("show-info");
+        } else if (entry.intersectionRatio <= 0.2) {
+          entry.target.classList.remove("show-info");
+        }
+      });
+    }, { threshold: [0, 0.2, 0.9, 1] });
+
+    cards.forEach(card => observer.observe(card));
+
+    // ============================
+    // MOBILE TAP TO TOGGLE INFO
+    // ============================
     cards.forEach(card => {
-      const title = card.querySelector(".info-title")?.textContent.toLowerCase() || "";
-      const year = card.querySelector(".year")?.textContent.toLowerCase() || "";
-      const number = card.dataset.number || "";
-      const combined = `${title} ${year} ${number}`.toLowerCase();
-
-      card.style.display = combined.includes(query) ? "block" : "none";
+      card.addEventListener("click", () => {
+        card.classList.toggle("show-info");
+      });
     });
-  });
-
-  // SCROLL REVEAL
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.intersectionRatio >= 0.9) {
-        entry.target.classList.add("show-info");
-      } else if (entry.intersectionRatio <= 0.2) {
-        entry.target.classList.remove("show-info");
-      }
-    });
-  }, { threshold: [0, 0.2, 0.9, 1] });
-
-  cards.forEach(card => observer.observe(card));
-</script>
+  </script>
 
 </body>
 </html>
